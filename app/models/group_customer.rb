@@ -1,0 +1,2 @@
+class GroupCustomer < ApplicationRecord
+end
