@@ -1,0 +1,2 @@
+module Publics::FieldsHelper
+end
