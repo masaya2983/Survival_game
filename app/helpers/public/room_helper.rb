@@ -1,0 +1,2 @@
+module Public::RoomHelper
+end
