@@ -5,7 +5,7 @@ class Publics::GroupsController < ApplicationController
   end
 
   def index
-    @book = Book.new
+    @field = Field.new
     @groups = Group.all
   end
 end
