@@ -44,7 +44,7 @@ class Publics::FieldsController < ApplicationController
   private
 
   def field_params
-    params.require(:field).permit(:name, :body, :rate)
+    params.require(:field).permit(:name, :body)
   end
 
   def ensure_correct_customer
