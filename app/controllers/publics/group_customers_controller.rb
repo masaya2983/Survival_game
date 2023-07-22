@@ -1,5 +1,5 @@
 class Publics::GroupCustomersController < ApplicationController
-   before_action :authenticate_user!
+   before_action :authenticate_customer!
 
   def create
     group_customer = current_customer.group_customers.new(group_id: params[:group_id])

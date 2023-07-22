@@ -4,7 +4,7 @@ class Tag < ApplicationRecord
 
   scope :merge_books, -> (tags){ }
 
-  def self.search_books_for(content, method)
+  def self.search_fields_for(content, method)
 
     if method == 'perfect'
       tags = Tag.where(name: content)
