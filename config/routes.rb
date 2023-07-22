@@ -16,18 +16,24 @@ Rails.application.routes.draw do
  end
  scope module: :public do
   root to: "home#top"
+  get "home/about"=>"homes#about"
     resources :customers, only: [:index, :show, :update, :destroy]do
     patch "withdrawal" => "customers#withdrawal", as: 'withdrawl'
     
   end
+   get "search" => "searches#search"
    resources :fields, only: [:index, :show, :update, :destroy, :new ]do
-   resource :favorites, only:[:create,:destroy]
-    
-
+    resource :favorites, only:[:create,:destroy]
+    patch "withdrawal" => "users#withdrawal", as: 'withdrawl'
+     resources :field_comments, only: [:create,:destroy]
   end
-
-  resources :comments, only: [:create,:destroy]
-
+   resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
+    resource :group_users, only: [:create, :destroy]
+    resources :event_notices, only: [:new, :create]
+    get "event_notices" => "event_notices#sent"
+  end
+ 
+ resources :chats, only: [:show, :create]
 
 
   get "category" => "categories#search"
