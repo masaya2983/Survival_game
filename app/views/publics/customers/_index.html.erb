@@ -12,7 +12,7 @@
         <td><%= image_tag customer.get_profile_image, size: '50x50' %></td>
         <td><%= customer.name %></td>
         <td><%= render "relationships/btn", customer: customer %></td>
-        <td><%= link_to 'Show', customer, class: "user_#{customer.id}" %></td>
+        <td><%= link_to 'Show', customer, class: "customer_#{customer.id}" %></td>
       </tr>
     <% end %>
   </tbody>
