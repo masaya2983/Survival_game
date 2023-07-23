@@ -2,7 +2,7 @@
 
 <div class="message" style="width: 400px;">
   <% @chats.each do |chat| %>
-    <% if chat.user_id == current_user.id %>
+    <% if chat.customer_id == current_customer.id %>
       <p style="text-align: right;"><%= chat.message %></p>
     <% else %>
       <p style="text-align: left;"><%= chat.message %></p>
