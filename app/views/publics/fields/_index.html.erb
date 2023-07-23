@@ -19,7 +19,7 @@
         <td class=<%= "favorite-" + field.id.to_s %> >
             <%= render "favorites/btn", field: field %>
         </td>
-        <td><%= render "book_comments/counter", bfield: field %></td>
+        <td><%= render "field_comments/counter", bfield: field %></td>
       </tr>
     <% end %>
   </tbody>
