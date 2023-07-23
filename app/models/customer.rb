@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
         has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
         # 与フォロー関係を通じて参照→自分がフォローしている人
          has_many :followings, through: :relationships, source: :followed
-
+        has_many :read_counts, dependent: :destroy
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true

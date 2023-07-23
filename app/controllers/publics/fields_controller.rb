@@ -5,6 +5,10 @@ class Publics::FieldsController < ApplicationController
   def show
     @field = Field.find(params[:id])
     @field_comment = FieldComment.new
+    @field_detail =Field.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @field_detail.id)
+      current_user.view_counts.create(field_id: @field_detail.id)
+    end
   end
 
   def index
