@@ -4,22 +4,29 @@ Rails.application.routes.draw do
   }
 
   devise_for :customers, skip: [:passwords], controllers:{
-   registrations: "public/registrations",
-    sessions: 'public/sessions'
+   registrations: "publics/registrations",
+    sessions: 'publics/sessions'
   }
+  devise_scope :customers do
+  get '/customers/sign_out' => 'devise/sessions#destroy'
+  end
 
-   namespace :admin do
-   root :to => "homes#top"
-   resources :customers, only: [:index, :show, :update, :destroy]
-   resources :fields, only: [:index, :show, :update, :destroy, :new ]
+   namespace :admins do
+    root :to => "homes#top"
+    resources :customers, only: [:index, :show, :update, :destroy]
+    resources :fields, only: [:index, :show, :update, :destroy, :new ]
+   end
+  #ゲスト用
+   devise_scope :users do
+    post 'user/guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
 
- end
- scope module: :public do
-  root to: "home#top"
+ scope module: :publics do
+  root to: "homes#top"
   get "home/about"=>"homes#about"
     resources :customers, only: [:index, :show, :update, :destroy]do
     patch "withdrawal" => "customers#withdrawal", as: 'withdrawl'
-    
+
   end
    get "search" => "searches#search"
    resources :fields, only: [:index, :show, :update, :destroy, :new ]do
@@ -27,12 +34,14 @@ Rails.application.routes.draw do
     patch "withdrawal" => "users#withdrawal", as: 'withdrawl'
      resources :field_comments, only: [:create,:destroy]
   end
+  get "tag" => "tags#search"
+
    resources :groups, only: [:new, :index, :show, :create, :edit, :update] do
     resource :group_users, only: [:create, :destroy]
     resources :event_notices, only: [:new, :create]
     get "event_notices" => "event_notices#sent"
   end
- 
+
  resources :chats, only: [:show, :create]
 
 
@@ -44,3 +53,4 @@ Rails.application.routes.draw do
 
 
 end
+
