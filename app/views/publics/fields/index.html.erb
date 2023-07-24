@@ -1,13 +1,20 @@
 <div class='container px-5 px-sm-0'>
-  <%= render 'layouts/errors', obj: @book %>
+  <%= render 'layouts/errors', obj: @field %>
   <div class='row'>
     <div class='col-md-3'>
-
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
-      <%= link_to "新しい順", fields_path(sort: 'created_at DESC') %> | <%= link_to "評価の高い順", fields_path(sort: 'rate DESC') %>
-      <%= render 'index', fields: @fields%>
+       <div class="btn-wrapper col-12 mx-auto">
+         <div class="swiper">
+          <div class="swiper-wrapper">
+           <div class="swiper-slide text-center">
+              <%= link_to "新しい順", fields_path(sort: 'created_at DESC') %>
+                <%= render 'index', fields: @fields%>
+            </div>
+          </div>
+        </div>
+  　  </div>
     </div>
   </div>
 </div>
