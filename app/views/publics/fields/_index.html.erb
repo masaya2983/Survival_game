@@ -17,9 +17,9 @@
         <td><%= link_to field.title,field, class: "book_#{field.id}" %></td>
         <td><%= field.body %></td>
         <td class=<%= "favorite-" + field.id.to_s %> >
-            <%= render "favorites/btn", field: field %>
+            <%= render "publicks/favorites/btn", field: field %>
         </td>
-        <td><%= render "field_comments/counter", bfield: field %></td>
+        <td><%= render "publicks/field_comments/counter", bfield: field %></td>
       </tr>
     <% end %>
   </tbody>
