@@ -12,7 +12,7 @@ class Publics::FieldsController < ApplicationController
   end
 
   def index
-    @fields = Field.all.order(params[:sort])
+    @fields = Field.all.(params[:sort])
     @field = Field.new
   end
 
@@ -41,6 +41,7 @@ class Publics::FieldsController < ApplicationController
   end
 
   def destroy
+    @field = Field.find(params[:id])
     @field.destroy
     redirect_to fields_path
   end
@@ -48,7 +49,7 @@ class Publics::FieldsController < ApplicationController
   private
 
   def field_params
-    params.require(:field).permit(:name, :body)
+    params.require(:field).permit(:name, :body,:image,:status, :review, :star, :category_id)
   end
 
   def ensure_correct_customer

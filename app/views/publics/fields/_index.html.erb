@@ -15,13 +15,13 @@
           <% end %>
         </td>
          <td><%= l field.created_at, format: :short %></td>
-         
-        <td><%= link_to field.title,field, class: "book_#{field.id}" %></td>
+
+        <td><%= link_to field.title,field, class: "field_#{field.id}" %></td>
         <td><%= field.body %></td>
         <td class=<%= "favorite-" + field.id.to_s %> >
-            <%= render "publicks/favorites/btn", field: field %>
+            <%= render "publics/favorites/btn", field: field %>
         </td>
-        <td><%= render "publicks/field_comments/counter", field: field %></td>
+        <td><%= render "publics/field_comments/counter", field: field %></td>
       </tr>
     <% end %>
   </tbody>
