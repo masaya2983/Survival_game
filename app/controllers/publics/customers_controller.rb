@@ -18,12 +18,26 @@ class Publics::CustomersController < ApplicationController
   end
 
   def update
-    if @customer.update(user_params)
+     @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
       redirect_to customer_path(@customer), notice: "You have updated user successfully."
     else
       render "edit"
     end
   end
+  
+ def check
+   @customer = current_customer
+ end
+
+ def withdrawal
+   @customer = current_customer
+    #is_deletedカラムをtrueに変更することにより削除フラグを立てる
+  @customer.update(is_deleted: true)
+  reset_session
+  redirect_to root_path
+ end
+
 
   private
 

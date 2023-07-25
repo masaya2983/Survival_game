@@ -24,7 +24,7 @@ Rails.application.routes.draw do
  scope module: :publics do
   root to: "homes#top"
   get "home/about"=>"homes#about"
-    resources :customers, only: [:index, :show, :update, :destroy]do
+    resources :customers, only: [:index, :show, :update, :edit, :destroy]do
     patch "withdrawal" => "customers#withdrawal", as: 'withdrawl'
      resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   end
    get "search" => "searches#search"
-   resources :fields, only: [:index, :show, :update, :destroy, :new ]do
+   resources :fields, only: [:index, :show, :update, :destroy, :edit, :new ]do
     resource :favorites, only:[:create,:destroy]
     patch "withdrawal" => "users#withdrawal", as: 'withdrawl'
      resources :field_comments, only: [:create,:destroy]
