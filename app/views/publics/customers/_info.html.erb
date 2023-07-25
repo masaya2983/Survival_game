@@ -2,7 +2,7 @@
   <tr><%= image_tag customer.get_profile_image, size:'100x100' %></tr>
   <tr>
 	  <th>name</th>
-	  <th><%= user.name %></th>
+	  <th><%= customer.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
@@ -19,7 +19,7 @@
 </table>
 　
 <div class='row'>
-  <% if current_uustomer != customer %>
+  <% if current_customer != customer %>
     <td><%= render "relationships/btn", customer: customer %></td>
   <% else %>
     <%= link_to edit_customer_path(customer), class: "btn btn-outline-secondary btn-block edit_user_#{customer.id}" do %>

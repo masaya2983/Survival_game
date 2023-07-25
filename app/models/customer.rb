@@ -19,20 +19,20 @@ class Customer < ApplicationRecord
         has_many :read_counts, dependent: :destroy
   has_one_attached :profile_image
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, length: { maximum: 50 }
+  #validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  #validates :introduction, length: { maximum: 50 }
 
 
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+    (profile_image.attached?) ? profile_image : 'no_image.png'
   end
 
-  def follow(user)
-    relationships.create(followed_id: user.id)
+  def follow(customer)
+    relationships.create(followed_id: customer.id)
   end
 
-  def unfollow(user)
-    relationships.find_by(followed_id: user.id).destroy
+  def unfollow(customer)
+    relationships.find_by(followed_id: customer.id).destroy
   end
 
   def following?(user)

@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   get "home/about"=>"homes#about"
     resources :customers, only: [:index, :show, :update, :destroy]do
     patch "withdrawal" => "customers#withdrawal", as: 'withdrawl'
+     resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
 
   end
    get "search" => "searches#search"
@@ -45,7 +48,6 @@ Rails.application.routes.draw do
  resources :chats, only: [:show, :create]
 
 
-  get "category" => "categories#search"
 
  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
