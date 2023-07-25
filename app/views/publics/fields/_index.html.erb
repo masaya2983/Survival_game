@@ -8,12 +8,14 @@
     </tr>
   </thead>
   <tbody>
-    <% fields.each do |field| %>
+    <% field.each do |field| %>
       <tr>
         <td><%= link_to(field.user) do %>
           <%= image_tag book.user.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
+         <td><%= l field.created_at, format: :short %></td>
+         
         <td><%= link_to field.title,field, class: "book_#{field.id}" %></td>
         <td><%= field.body %></td>
         <td class=<%= "favorite-" + field.id.to_s %> >
