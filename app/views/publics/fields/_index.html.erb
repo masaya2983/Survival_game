@@ -10,8 +10,8 @@
   <tbody>
     <% field.each do |field| %>
       <tr>
-        <td><%= link_to(field.user) do %>
-          <%= image_tag book.user.get_profile_image, size:'50x50' %>
+        <td><%= link_to(field.customer) do %>
+          <%= image_tag field.customer.get_profile_image, size:'50x50' %>
           <% end %>
         </td>
          <td><%= l field.created_at, format: :short %></td>
@@ -21,7 +21,7 @@
         <td class=<%= "favorite-" + field.id.to_s %> >
             <%= render "publicks/favorites/btn", field: field %>
         </td>
-        <td><%= render "publicks/field_comments/counter", bfield: field %></td>
+        <td><%= render "publicks/field_comments/counter", field: field %></td>
       </tr>
     <% end %>
   </tbody>
