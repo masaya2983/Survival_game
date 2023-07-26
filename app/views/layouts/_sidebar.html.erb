@@ -1,23 +1,16 @@
-<sidebar>
-  <div class='container mt-5'>
-  	<div class='row'>
-      <div class="sidebar">
-    	 <% if customer_signed_in? %>
-    	  <ul>
-    	   <li>
-    	     <%= link_to new_field_path, class: 'nav-link text-light' do %>
+ <div class="sidebar">
+  <header>サブメニュー</header>
+    <ul>
+      <li>
+        <%= link_to new_field_path, class: 'nav-link text-light' do %>
           <i class="fas fa-plus"></i> 新規投稿
-           <% end %>
-    	   </li>
-        <li>
-    	   <%= link_to "グループを作成する", new_group_path %> 
-    	   </li>
-    	   <li>
-         <%= link_to "グループ一覧", groups_path %>
-         </li>
-         <% end %>
-      </ul>
-    	</div>
-    </div>
-  </div>
-</sidebar>
+            <% end %>
+      </li>
+      <li>
+        <%= link_to "グループを作成する", new_group_path %>
+      </li>
+     
+       
+      </li>
+    </ul>
+</div>

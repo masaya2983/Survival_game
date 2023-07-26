@@ -1,8 +1,7 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-3'>
-      <h2>Customer info</h2>
-      <%= render 'publics/customers/info', customer: current_customer %>
+     <%= render 'layouts/sidebar',customers: @customers %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Users</h2>
