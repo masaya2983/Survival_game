@@ -50,15 +50,5 @@ class Customer < ApplicationRecord
       Customer.where('name LIKE ?', '%' + content + '%')
     end
   end
-  def self.guest
-      user = User.find_or_create_by(email: 'guest@example.com')
-      user.name = "guest_user"
-      user.password = SecureRandom.urlsafe_base64
-      user.save!
-      user
-  end
 
-    def active_for_authentication?
-     super && (is_deleted == false)
-    end
 end
