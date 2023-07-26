@@ -2,9 +2,66 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
   		<h1>サバゲーフィールド</h1>
-    	<%= render 'layouts/errors', obj: @field %>
-  		<%= render 'publics/fields/form', field: @field %>
-  		<%= link_to 'Show', @field, class: "book_#{@field.id}" %> |
+    <div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h4>フィールド名</h4>
+      <div>
+        <%= @field.name %>
+      </div>
+      <div>
+        <small>
+          <%= @field.tag.name %>
+        </small>
+      </div>
+
+    </div>
+    <div class='col-md-11 '>
+      <table class=table>
+        <thead>
+          <tr>
+            <th>image</th>
+            <th>カテゴリー名</th>
+            <th>ゲームタイトル</th>
+            <th>レビュー</th>
+
+
+            <th colspan=2></th>
+          </tr>
+        </thead>
+        <tr>
+          <td>
+            <%= link_to(@field.user) do %>
+              <%= image_tag @field.user.get_profile_image, size:"100x100" %><br>
+              <%= @field.user.name %>
+            <% end %>
+          </td>
+          <td> <%#= @field.tag.name %></td>
+          <td><%= link_to @field.name %></td>
+          <td><%= @field.body %></td>
+          
+          </tr>
+        
+       　 <tr>
+          <% if @field.user == current_user %>
+            <th><%= link_to '編集',edit_field_path(@field), class: "btn btn-sm btn-success edit_game_#{@field.id}" %></td>
+            <td><%= link_to '削除', @field, method: :delete, data: { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger" %></td>
+          <% end %>
+        </tr>
+      </table>
+       
+      <div class="comments-index">
+        comments
+        <%= render "public/fieldcomments/form", game: @field, comment: @field %>
+      </div>
+      <%= paginate @comments %>
+      	
   		<%= link_to 'Back', fields_path, class: "back" %>
+      <%= link_to "TOP",user_path(current_user),class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>
+
+  	
   </div>
 </div>
