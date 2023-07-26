@@ -13,6 +13,14 @@ class Publics::FieldsController < ApplicationController
 
   def index
     @fields = Field.all
+
+  if params[:latest]
+      @fields = Field.latest.page(params[:page]).per(10)
+  elsif params[:old].present?
+      @fields=Field.old.page(params[:page]).per(10)
+  else
+      @fields = Field.all.page(params[:page]).per(10)
+  end
     @field = Field.new
   end
 
