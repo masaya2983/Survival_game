@@ -10,7 +10,7 @@ class Publics::CustomerroomsController < ApplicationController
   end
 
   def index
-    @customers = User.all
+    @customers = Customer.all
     @field = Field.new
   end
 

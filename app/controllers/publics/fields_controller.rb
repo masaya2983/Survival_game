@@ -12,7 +12,7 @@ class Publics::FieldsController < ApplicationController
   end
 
   def index
-    @fields = Field.all.(params[:sort])
+    @fields = Field.all
     @field = Field.new
   end
 
