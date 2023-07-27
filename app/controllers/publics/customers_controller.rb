@@ -6,6 +6,10 @@ class Publics::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @fields = @customer.fields
     @field = Field.new
+     @today_field =  @fields.created_today
+    @yesterday_field = @fields.created_yesterday
+    @this_week_field = @fields.created_this_week
+    @last_week_field = @fields.created_last_week
   end
 
   def index
@@ -25,7 +29,7 @@ class Publics::CustomersController < ApplicationController
       render "edit"
     end
   end
-  
+
  def check
    @customer = current_customer
  end
