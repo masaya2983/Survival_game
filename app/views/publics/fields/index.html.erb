@@ -2,6 +2,19 @@
   <%= render 'layouts/errors', obj: @field %>
   <div class='row'>
     <div class='col-md-3'>
+      <header>サブメニュー</header>
+        <ul>
+          <li>
+            <%= link_to new_field_path, class: 'nav-link text-dark' do %>
+              <i class="fas fa-plus"></i> 新規投稿
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_group_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-plus"></i> 新規グループ
+            <% end %>
+          </li>
+        </ul>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>サバゲーフィールド</h2>
