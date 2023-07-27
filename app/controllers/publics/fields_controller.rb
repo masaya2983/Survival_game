@@ -37,6 +37,10 @@ class Publics::FieldsController < ApplicationController
     end
   end
 
+  def new
+    @field.new
+  end
+
   def edit
   end
 
