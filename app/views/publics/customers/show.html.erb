@@ -35,7 +35,20 @@
     <tbody>
       <tr>
 
-      canvas id="myLineChart"></canvas>
+      <td><%= @fields.created_6day_ago.count %></td>
+        <td><%= @fields.created_5day_ago.count %></td>
+        <td><%= @fields.created_4day_ago.count %></td>
+        <td><%= @fields.created_3day_ago.count %></td>
+        <td><%= @fields.created_2day_ago.count %></td>
+        <td><%= @fields.created_yesterday.count %></td>
+        <td><%= @fields.created_today.count %></td>
+      </tr>
+
+    </tbody>
+    </div>
+  </div>
+</div>
+      <canvas id="myLineChart"></canvas>
   <script>
     $(document).on('turbolinks:load', function() {
       var ctx = document.getElementById("myLineChart");
@@ -46,18 +59,37 @@
           datasets: [
             {
               label: '投稿したサバゲーの情報',
-      <td><%= @fields.created_6day_ago.count %></td>
-        <td><%= @fields.created_5day_ago.count %></td>
-        <td><%= @fields.created_4day_ago.count %></td>
-        <td><%= @fields.created_3day_ago.count %></td>
-        <td><%= @fields.created_2day_ago.count %></td>
-        <td><%= @fields.created_yesterday.count %></td>
-        <td><%= @fields.created_today.count %></td>
-      </tr>
-      <tr>
-
-      </tr>
-    </tbody>
-    </div>
-  </div>
-</div>
+               data: [
+                      <%= @fields.created_6day_ago.count %>,
+                      <%= @fields.created_5day_ago.count %>,
+                      <%= @fields.created_4day_ago.count %>,
+                      <%= @fields.created_3day_ago.count %>,
+                      <%= @fields.created_2day_ago.count %>,
+                      <%= @fields.created_yesterday.count %>,
+                      <%= @fields.created_today.count %>
+              ],
+                borderColor: "rgba(0,0,255,1)",
+              backgroundColor: "rgba(0,0,0,0)",
+              tension: 0.4
+            }
+          ],
+        },
+        options: {
+          title: {
+            display: true,
+            text: '7日間の投稿数の比較'
+          },
+          responsive: true,
+          scales: {
+            y:{
+              suggestedMin: 0,
+              suggestedMax: 10
+            },
+            x:{
+              stacked: true
+            },
+          },
+        }
+      });
+    });
+  </script>
