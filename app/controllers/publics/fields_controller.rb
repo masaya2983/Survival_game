@@ -4,16 +4,16 @@ class Publics::FieldsController < ApplicationController
 
   def show
     @field = Field.find(params[:id])
-
-    unless ViewCount.find_by(user_id: current_user.id, book_id: @field_detail.id)
-      current_user.view_counts.create(field_id: @field_detail.id)
+    @field = Field.new
+    unless ViewCount.find_by(customer_id: current_customer.id, field_id: @field_detail.id)
+      current_customer.view_counts.create(field_id: @field_detail.id)
     end
     @field_comment = FieldComment.new
   end
 
   def index
     @fields = Field.all
-
+    @field = Field.new
   if params[:latest]
       @fields = Field.latest.page(params[:page]).per(10)
   elsif params[:old].present?
@@ -21,24 +21,24 @@ class Publics::FieldsController < ApplicationController
   else
       @fields = Field.all.page(params[:page]).per(10)
   end
-    @field = Field.new
+
   end
 
   def create
     @field = Field.new(field_params)
     @field.customer_id = current_customer.id
-    tag_list = params[:field][:tag_name].split(',')
+
     if @field.save
-      @field.save_tags(tag_list)
-      redirect_to field_path(@field), notice: "You have created field successfully."
+      redirect_to @field
+     flash[:notice] = "You have created field successfully."
     else
       @fields = Field.all
-      render 'index'
+      render 'new'
     end
   end
 
   def new
-    @field.new
+    @field = Field.new
   end
 
   def edit
@@ -61,7 +61,7 @@ class Publics::FieldsController < ApplicationController
   private
 
   def field_params
-    params.require(:field).permit(:name, :body,:image,:status, :review, :star, :category_id)
+    params.require(:field).permit(:name,:content, :body,:image,:status, :review, :tag_id)
   end
 
   def ensure_correct_customer

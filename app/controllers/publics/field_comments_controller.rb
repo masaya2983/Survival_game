@@ -1,13 +1,13 @@
 class Publics::FieldCommentsController < ApplicationController
    def create
-    field = field.find(params[:book_id])
-    @comment = current_user.book_comments.new(book_comment_params)
-    @comment.book_id = book.id
+    field = field.find(params[:field_id])
+    @comment = current_customer.field_comments.new(field_comment_params)
+    @comment.field_id = field.id
     @comment.save
    end
 
   def destroy
-    @comment = FieldComment.find_by(id: params[:id], book_id: params[:book_id])
+    @comment = FieldComment.find_by(id: params[:id], field_id: params[:field_id])
     @comment.destroy
   end
 

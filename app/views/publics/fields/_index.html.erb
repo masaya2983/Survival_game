@@ -22,6 +22,9 @@
             <%= render "publics/favorites/btn", field: field %>
         </td>
         <td><%= render "publics/field_comments/counter", field: field %></td>
+
+        <td><%= link_to "show", field, class: "btn btn-success",data: {"turbolinks"=>false}   %></td>
+
       </tr>
     <% end %>
   </tbody>
