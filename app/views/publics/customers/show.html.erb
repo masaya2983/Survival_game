@@ -18,11 +18,11 @@
     <div class='col-md-8 offset-md-1'>
      <h2>Customer info</h2>
        <%= render 'publics/customers/info', customer: @customer %>
-       
+
        <h4>7日間分の投稿数</h4>
   <table class='table table-bordered'>
     <thead>
-      <tr> 
+      <tr>
         <th>６日前</th>
         <th>５日前</th>
         <th>４日前</th>
@@ -34,6 +34,18 @@
     </thead>
     <tbody>
       <tr>
+
+      canvas id="myLineChart"></canvas>
+  <script>
+    $(document).on('turbolinks:load', function() {
+      var ctx = document.getElementById("myLineChart");
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
+          datasets: [
+            {
+              label: '投稿したサバゲーの情報',
       <td><%= @fields.created_6day_ago.count %></td>
         <td><%= @fields.created_5day_ago.count %></td>
         <td><%= @fields.created_4day_ago.count %></td>
@@ -43,7 +55,7 @@
         <td><%= @fields.created_today.count %></td>
       </tr>
       <tr>
-      
+
       </tr>
     </tbody>
     </div>
