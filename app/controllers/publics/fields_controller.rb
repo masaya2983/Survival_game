@@ -4,14 +4,18 @@ class Publics::FieldsController < ApplicationController
 
   def show
     @field = Field.find(params[:id])
-    @field = Field.new
+   
     @field_comment = FieldComment.new
     @field_comments = FieldComment.all
+     if @field.status_private? && @field.customer !=current_customer
+      respond_to do |format|
+        format.html { redirect_to fields_path, notice: 'このページにはアクセスできません' }
+    end
+   end
   end
 
   def index
     @fields = Field.all
-    @field = Field.new
   if params[:latest]
       @fields = Field.latest.page(params[:page]).per(10)
   elsif params[:old].present?
@@ -19,7 +23,7 @@ class Publics::FieldsController < ApplicationController
   else
       @fields = Field.all.page(params[:page]).per(10)
   end
-
+   @field = Field.new
   end
 
   def create
@@ -59,7 +63,7 @@ class Publics::FieldsController < ApplicationController
   private
 
   def field_params
-    params.require(:field).permit(:name,:content, :body,:image,:status, :review, :tag_id)
+    params.require(:field).permit(:name,:content, :body,:image,:status, :tag_id)
   end
 
   def ensure_correct_customer

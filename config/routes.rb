@@ -32,11 +32,12 @@ Rails.application.routes.draw do
 
   end
    get "search" => "searches#search"
-   resources :fields, only: [:index,:show,:update,:destroy,:edit,:new]do
+   resources :fields, only: [:index,:create,:show,:update,:destroy,:edit,:new]do
     resource :favorites, only:[:create,:destroy]
     patch "withdrawal" => "users#withdrawal", as: 'withdrawl'
-     resources :field_comments, only: [:create,:destroy]
+
   end
+  resources :field_comments, only: [:create,:destroy]
   get "tag" => "tags#search"
 
    resources :groups, only: [:new, :index, :show, :create, :edit, :update] do

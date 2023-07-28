@@ -11,7 +11,7 @@
       </div>
       <div>
         <small>
-          <%= @field.tag.name %>
+          <%#= @field.tag.name %>
         </small>
       </div>
 
@@ -44,7 +44,7 @@
 
        　 <tr>
           <% if @field.customer == current_customer %>
-            <th><%= link_to '編集',edit_field_path(@field), class: "btn btn-sm btn-success edit_game_#{@field.id}" %></td>
+            <th><%= link_to '編集',edit_field_path(@field), class: "btn btn-sm btn-success edit_field_#{@field.id}" %></td>
             <td><%= link_to '削除', @field, method: :delete, data: { confirm: '本当に消しますか？'}, class: "btn btn-sm btn-danger" %></td>
           <% end %>
         </tr>
