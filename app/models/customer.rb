@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
          has_many :fields, dependent: :destroy
          has_many :field_comments, dependent: :destroy
          has_many :favorites, dependent: :destroy
+         
          has_many :group_customers, dependent: :destroy
          # 自分がフォローされる（被フォロー）側の関係性
          has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

@@ -18,11 +18,11 @@ div class='container px-5 px-sm-0'>
           <td><%= @group.name %></td>
           <td><%= @group.introduction %></td>
           <td>
-            <% @group.users.each do |user| %>
-             <li style="list-style: none;"><%= user.name %></li>
+            <% @group.customers.each do |customer| %>
+             <li style="list-style: none;"><%= customer.name %></li>
             <% end %>
           </td>
-          <% if @group.is_owned_by?(current_user) %>
+          <% if @group.is_owned_by?(current_customer) %>
             <td>
               <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
             </td>
@@ -31,10 +31,10 @@ div class='container px-5 px-sm-0'>
             </td>
           <% else %>
             <td>
-              <% if @group.includesUser?(current_user)%>
-                <%= link_to 'Leave this group', group_group_users_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+              <% if @group.includesUser?(current_customer)%>
+                <%= link_to 'Leave this group', group_group_customers_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
               <% else %>
-                <%= link_to 'Join this group', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
+                <%= link_to 'Join this group', group_group_customers_path(@group), method: :post, class: "btn btn-sm btn-success" %>
               <% end %>
             </td>
           <% end %>

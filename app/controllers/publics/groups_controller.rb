@@ -8,12 +8,12 @@ class Publics::GroupsController < ApplicationController
     @field = Field.new
     @groups = Group.all
   end
-  
+
   def show
     @field = Field.new
     @group = Group.find(params[:id])
   end
-  
+
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_customer.id
@@ -23,10 +23,10 @@ class Publics::GroupsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @group.update(group_params)
       redirect_to groups_path
@@ -38,7 +38,7 @@ class Publics::GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :image)
+    params.require(:group).permit(:name, :introduction, :group_image)
   end
 
   def ensure_correct_customer
@@ -47,5 +47,5 @@ class Publics::GroupsController < ApplicationController
       redirect_to groups_path
     end
   end
-  
+
 end
