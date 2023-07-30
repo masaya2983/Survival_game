@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_28_144608) do
+ActiveRecord::Schema.define(version: 2023_07_30_041552) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,17 @@ ActiveRecord::Schema.define(version: 2023_07_28_144608) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "field_tags", force: :cascade do |t|
+    t.integer "field_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["field_id"], name: "index_field_tags_on_field_id"
+    t.index ["field_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_field_tags_on_tag_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
+  end
+
   create_table "fields", force: :cascade do |t|
     t.string "name"
     t.text "body"
@@ -157,6 +168,8 @@ ActiveRecord::Schema.define(version: 2023_07_28_144608) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "field_tags", "fields"
+  add_foreign_key "field_tags", "tags"
   add_foreign_key "group_customers", "customers"
   add_foreign_key "group_customers", "groups"
 end
