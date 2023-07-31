@@ -4,7 +4,7 @@ class Publics::FieldsController < ApplicationController
 
   def show
     @field = Field.find(params[:id])
-   
+
     @field_comment = FieldComment.new
     @field_comments = FieldComment.all
      if @field.status_private? && @field.customer !=current_customer
@@ -44,6 +44,12 @@ class Publics::FieldsController < ApplicationController
   end
 
   def edit
+     @field = Field.find(params[:id])
+    if @field.customer == current_customer
+      render "edit"
+    else
+        redirect_to fields_path
+    end
   end
 
   def update
