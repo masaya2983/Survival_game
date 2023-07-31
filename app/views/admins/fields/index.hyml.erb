@@ -1,0 +1,41 @@
+div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3>ゲーム一覧</h3>
+      <table class="table rable-hover table-inverse">
+        <thead>
+          <tr>
+            <th>投稿</th>
+            <th>レビュー</th>
+            <th>評価</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td><%= game.id %></td>
+              <td>
+                <%= link_to admin_game_path (game.id) do %>
+                  <%= game.title %>
+                <% end %>
+              </td>
+              <td><%= game.body %></td>
+              
+              <td>
+                <% if game.is_deleted? %>
+                  <P>削除</P>
+                <% else %>
+                   <p class="text-success"><strong>有効</strong></p>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @games %>
+    </div>
+    </div>
+   <%= link_to "top", admin_root_path, class: "btn btn-primary" %>
+  </div>
