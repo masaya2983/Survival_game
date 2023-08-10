@@ -69,7 +69,7 @@ class Publics::FieldsController < ApplicationController
   private
 
   def field_params
-    params.require(:field).permit(:name,:content, :body,:image,:status, :tag_id)
+    params.require(:field).permit(:name,:content, :body,:image,:status,:tag_id)
   end
 
   def ensure_correct_customer
