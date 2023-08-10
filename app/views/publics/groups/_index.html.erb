@@ -10,11 +10,8 @@
   <tbody>
     <% groups.each do |group| %>
       <tr>
-       <% if group.group_image.attached? %>
-            <%= image_tag group.group_image,size:"50x50" %>
-          <% else %>
-            <%= image_tag 'no_image', size: "50x50" %>
-          <% end %>
+       <td><%= image_tag group.group_image,size: "50x50" %></td>
+
         <td><%= link_to group.name, group, class: "group_#{group.id}" %></td>
         <td><%= group.group_customers.count %></td>
         <% if group.is_owned_by?(current_customer) %>
