@@ -15,17 +15,18 @@
           </li>
           <li>
             <%=  link_to customers_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-users"></i> ユーザー一覧
+             <i class="fas fa-user"></i> ユーザー一覧
             <% end %>
           </li>
           <li>
             <%=  link_to fields_path ,class: 'nav-link text-light' do %>
+            <i class="fas fa-map-marker-alt"></i>
               Fields
             <% end %>
           </li>
           <li>
              <%= link_to  groups_path,class: 'nav-link text-light' do %>
-             グループ一覧
+            <i class="fas fa-users"></i> グループ一覧
             <% end %>
           <li>
             <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-light' do %>
